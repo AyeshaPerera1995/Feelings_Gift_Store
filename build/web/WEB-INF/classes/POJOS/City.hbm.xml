@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 26, 2019 2:05:43 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOS.City" table="city" catalog="giftshop" optimistic-lock="version">
+        <id name="idcity" type="java.lang.Integer">
+            <column name="idcity" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="district" class="POJOS.District" fetch="select">
+            <column name="district_iddistrict" not-null="true" />
+        </many-to-one>
+        <property name="cityname" type="string">
+            <column name="cityname" length="100" />
+        </property>
+        <set name="addresses" table="address" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="city_idcity" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.Address" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 26, 2019 2:05:43 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOS.Invoiceproduct" table="invoiceproduct" catalog="giftshop" optimistic-lock="version">
+        <id name="idinvoiceproduct" type="java.lang.Integer">
+            <column name="idinvoiceproduct" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="invoice" class="POJOS.Invoice" fetch="select">
+            <column name="invoice_idinvoice" not-null="true" />
+        </many-to-one>
+        <many-to-one name="product" class="POJOS.Product" fetch="select">
+            <column name="product_idproduct" not-null="true" />
+        </many-to-one>
+        <property name="qty" type="java.lang.Integer">
+            <column name="qty" />
+        </property>
+        <property name="total" type="java.lang.Double">
+            <column name="total" precision="22" scale="0" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status" />
+        </property>
+    </class>
+</hibernate-mapping>

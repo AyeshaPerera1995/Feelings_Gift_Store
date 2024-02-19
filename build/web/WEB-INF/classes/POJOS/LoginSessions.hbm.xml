@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 26, 2019 2:05:43 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOS.LoginSessions" table="login_sessions" catalog="giftshop" optimistic-lock="version">
+        <id name="idloginSessions" type="java.lang.Integer">
+            <column name="idlogin_sessions" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="userLogin" class="POJOS.UserLogin" fetch="select">
+            <column name="user_login_iduser_login" not-null="true" />
+        </many-to-one>
+        <property name="ipAddress" type="string">
+            <column name="ip_address" length="100" />
+        </property>
+        <property name="inTime" type="timestamp">
+            <column name="in_time" length="19" />
+        </property>
+        <property name="outTime" type="timestamp">
+            <column name="out_time" length="19" />
+        </property>
+        <set name="sessionActivitieses" table="session_activities" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="login_sessions_idlogin_sessions" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.SessionActivities" />
+        </set>
+    </class>
+</hibernate-mapping>

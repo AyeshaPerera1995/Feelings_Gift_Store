@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 26, 2019 2:05:43 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOS.Invoice" table="invoice" catalog="giftshop" optimistic-lock="version">
+        <id name="idinvoice" type="java.lang.Integer">
+            <column name="idinvoice" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="user" class="POJOS.User" fetch="select">
+            <column name="user_iduser" not-null="true" />
+        </many-to-one>
+        <property name="invodate" type="date">
+            <column name="invodate" length="10" />
+        </property>
+        <property name="invotime" type="time">
+            <column name="invotime" length="8" />
+        </property>
+        <property name="nettotal" type="java.lang.Double">
+            <column name="nettotal" precision="22" scale="0" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status" />
+        </property>
+        <property name="deliveryAddress" type="string">
+            <column name="delivery_address" length="300" />
+        </property>
+        <set name="invoiceproducts" table="invoiceproduct" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="invoice_idinvoice" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.Invoiceproduct" />
+        </set>
+    </class>
+</hibernate-mapping>

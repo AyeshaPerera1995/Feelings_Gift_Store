@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 26, 2019 2:05:43 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOS.Subcategory" table="subcategory" catalog="giftshop" optimistic-lock="version">
+        <id name="idsubcategory" type="java.lang.Integer">
+            <column name="idsubcategory" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="category" class="POJOS.Category" fetch="select">
+            <column name="category_idcategory" not-null="true" />
+        </many-to-one>
+        <property name="subcatname" type="string">
+            <column name="subcatname" length="100" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status" />
+        </property>
+        <set name="products" table="product" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="subCategory_idsubcategory" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.Product" />
+        </set>
+    </class>
+</hibernate-mapping>

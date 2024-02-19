@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 26, 2019 2:05:43 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOS.Product" table="product" catalog="giftshop" optimistic-lock="version">
+        <id name="idproduct" type="java.lang.Integer">
+            <column name="idproduct" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="category" class="POJOS.Category" fetch="select">
+            <column name="category_idcategory" not-null="true" />
+        </many-to-one>
+        <many-to-one name="gendertype" class="POJOS.Gendertype" fetch="select">
+            <column name="genderType_idgenderType" not-null="true" />
+        </many-to-one>
+        <many-to-one name="madetype" class="POJOS.Madetype" fetch="select">
+            <column name="madeType_idmadeType" not-null="true" />
+        </many-to-one>
+        <many-to-one name="subcategory" class="POJOS.Subcategory" fetch="select">
+            <column name="subCategory_idsubcategory" not-null="true" />
+        </many-to-one>
+        <property name="proname" type="string">
+            <column name="proname" length="45" />
+        </property>
+        <property name="prodesc" type="string">
+            <column name="prodesc" />
+        </property>
+        <property name="unitPrice" type="java.lang.Double">
+            <column name="unit_price" precision="22" scale="0" />
+        </property>
+        <property name="secondPrice" type="java.lang.Double">
+            <column name="second_price" precision="22" scale="0" />
+        </property>
+        <property name="qty" type="java.lang.Integer">
+            <column name="qty" />
+        </property>
+        <property name="soldQty" type="java.lang.Integer">
+            <column name="sold_qty" />
+        </property>
+        <property name="imgurl" type="string">
+            <column name="imgurl" />
+        </property>
+        <property name="imgurl2" type="string">
+            <column name="imgurl2" />
+        </property>
+        <property name="imgurl3" type="string">
+            <column name="imgurl3" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status" />
+        </property>
+        <property name="count" type="java.lang.Integer">
+            <column name="count" />
+        </property>
+        <property name="catStatus" type="java.lang.Integer">
+            <column name="cat_status" />
+        </property>
+        <set name="wishlistProducts" table="wishlist_product" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="product_idproduct" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.WishlistProduct" />
+        </set>
+        <set name="invoiceproducts" table="invoiceproduct" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="product_idproduct" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.Invoiceproduct" />
+        </set>
+        <set name="cartproducts" table="cartproduct" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="product_idproduct" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.Cartproduct" />
+        </set>
+    </class>
+</hibernate-mapping>

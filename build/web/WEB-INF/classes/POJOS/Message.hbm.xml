@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 26, 2019 2:05:43 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOS.Message" table="message" catalog="giftshop" optimistic-lock="version">
+        <id name="idmessage" type="java.lang.Integer">
+            <column name="idmessage" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="user" class="POJOS.User" fetch="select">
+            <column name="user_iduser" not-null="true" />
+        </many-to-one>
+        <property name="subject" type="string">
+            <column name="subject" length="45" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="300" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="100" />
+        </property>
+        <property name="date" type="date">
+            <column name="date" length="10" />
+        </property>
+        <property name="deStatus" type="java.lang.Integer">
+            <column name="de_status" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status" />
+        </property>
+    </class>
+</hibernate-mapping>

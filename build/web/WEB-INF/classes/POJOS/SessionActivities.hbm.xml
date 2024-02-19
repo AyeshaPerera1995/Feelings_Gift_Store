@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 26, 2019 2:05:43 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOS.SessionActivities" table="session_activities" catalog="giftshop" optimistic-lock="version">
+        <id name="idtable1" type="java.lang.Integer">
+            <column name="idtable1" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="loginSessions" class="POJOS.LoginSessions" fetch="select">
+            <column name="login_sessions_idlogin_sessions" not-null="true" />
+        </many-to-one>
+        <property name="activityDesc" type="string">
+            <column name="activity_desc" length="65535" />
+        </property>
+    </class>
+</hibernate-mapping>
